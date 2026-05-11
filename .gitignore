@@ -1,0 +1,25 @@
+# Data
+datasets/
+pretrained/*.pth
+*.pth
+*.onnx
+
+# Experiment artifacts
+experiments/*/checkpoints/
+logs/
+tb_logger/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+*.eggs/
+
+# OS
+.DS_Store
+*.swp
+
+# Large outputs
+results/baselines/visual_samples/
+results/baselines/plots/*.png
+results/baselines/plots/*.pdf

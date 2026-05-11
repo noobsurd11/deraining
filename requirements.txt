@@ -1,0 +1,16 @@
+torch==2.11.0+cu128
+torchvision==0.26.0+cu128
+torchaudio==2.11.0+cu128
+basicsr==1.4.2
+lpips==0.1.4
+einops==0.8.2
+fvcore
+timm
+scikit-image
+matplotlib
+numpy
+pyyaml
+tqdm
+ninja
+causal-conv1d==1.6.1
+mamba-ssm==2.3.1

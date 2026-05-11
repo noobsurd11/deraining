@@ -1,0 +1,8 @@
+model_variant,onnx_size_mb,ort_cpu_latency_ms,ort_gpu_latency_ms,pytorch_gpu_latency_ms,psnr_rain100h_20img,export_success,notes
+restormer_fp32,107.1143,1943.4017,141.4289,46.125,33.0366,True,
+restormer_fp16,54.8603,4466.0217,103.8155,22.6086,33.0339,True,
+nafnet_fp32,117.3167,281.8606,9.2548,11.2558,31.6477,True,
+nafnet_fp16,58.9968,304.6816,7.9684,11.3113,31.6455,True,
+nafnet_kd,117.3167,281.4868,9.2577,11.1948,31.8333,True,
+nafnet_kd_fp16,58.9968,304.8292,7.9693,11.2005,31.8306,True,
+drsformer_fp32,138.0397,2626.3364,175.2161,109.5345,35.1357,True,

@@ -1,0 +1,16 @@
+model,technique,psnr_rain100h,psnr_rain100l,params_M,model_size_mb,latency_ms
+restormer,restormer_fp32,31.479,39.1471,26.1266,104.7004,46.3527
+restormer,restormer_fp16,31.4771,39.1466,26.1266,52.4467,47.4909
+restormer,restormer_static_int8,29.4687,36.6063,26.1266,29.4075,15109.5973
+restormer,restormer_pruned30_ft,28.3681,33.968,26.1266,104.7099,48.3547
+restormer,restormer_pruned30_ft_fp16,28.3686,33.9673,26.1266,52.4573,24.4779
+nafnet_w32,nafnet_fp32,30.2297,36.9353,29.1597,116.8666,11.1786
+nafnet_w32,nafnet_fp16,30.2279,36.9328,29.1597,58.5585,12.968
+nafnet_w32,nafnet_static_int8,29.284,34.9742,29.1597,31.9062,147.7575
+nafnet_w32,nafnet_pruned30_ft,28.9192,34.5962,29.1597,116.8887,11.1968
+nafnet_w32,nafnet_pruned30_ft_fp16,28.9187,34.5945,29.1597,58.5726,12.3898
+nafnet_kd,nafnet_kd,30.4345,37.3249,29.1597,116.8772,11.2564
+nafnet_kd,nafnet_kd_fp16,30.4301,37.3246,29.1597,58.5605,12.3729
+nafnet_kd,nafnet_kd_static_int8,29.6046,35.4857,29.1597,31.9142,201.5763
+drsformer,drsformer_fp32,33.8668,40.4984,33.6554,134.972,109.236
+drsformer,drsformer_fp16,33.8666,40.4985,33.6554,67.686,149.4277

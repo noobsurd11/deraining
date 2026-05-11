@@ -1,0 +1,7 @@
+stage,psnr_rain100h,psnr_rain100l,model_size_mb,gpu_latency_ms,nonzero_params_M
+nafnet_kd_baseline,30.4345,37.3249,116.8772,11.1938,29.1597
+nafnet_kd_pruned30,12.2548,19.338,116.8799,11.3372,20.4487
+nafnet_kd_pruned30_ft,29.3153,35.2723,116.8819,11.235,29.1597
+nafnet_kd_pruned30_ft_fp16,29.3157,35.2724,58.5659,12.43,29.1597
+nafnet_kd_pruned30_ft_int8,28.2961,32.6881,31.9168,nan,29.1597
+nafnet_kd_pruned30_ft_fp16_onnx,29.3157,35.2724,58.9968,7.9567,29.1597
