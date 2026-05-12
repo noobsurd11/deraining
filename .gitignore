@@ -1,25 +1,37 @@
-# Data
+# ── Data & Pretrained Weights ──
 datasets/
-pretrained/*.pth
+pretrained/
 *.pth
 *.onnx
+*.pth.bak
 
-# Experiment artifacts
+# ── Cloned model repos (large, fetch via git clone) ──
+models/
+
+# ── Empty nested git repo ──
+deraining/
+
+# ── Experiment artifacts ──
 experiments/*/checkpoints/
+experiments/pruning_v3/checkpoints/
+*.log
+
+# ── TensorBoard & logging ──
 logs/
 tb_logger/
 
-# Python
+# ── Generated plots & visual samples (reproducible) ──
+results/baselines/visual_samples/
+results/baselines/plots/*.png
+results/baselines/plots/*.pdf
+
+# ── Python ──
 __pycache__/
 *.pyc
 *.egg-info/
 *.eggs/
 
-# OS
+# ── OS ──
 .DS_Store
 *.swp
-
-# Large outputs
-results/baselines/visual_samples/
-results/baselines/plots/*.png
-results/baselines/plots/*.pdf
+*~
