@@ -147,6 +147,8 @@ Model converged by ~20K iterations and began mild overfitting after 50K. Best ch
 | NAFNet-KD | Static INT8 | 29.60 | 31.9 MB | 201.6 ms | CPU |
 | DRSformer | FP32 | 33.87 | 135.0 MB | 109.2 ms | GPU |
 | DRSformer | FP16 | 33.87 | 67.7 MB | 149.4 ms | GPU |
+| NAFNet-KD-Pruned | FP32 | 30.60 | 80.8 MB | 11.2 ms | GPU |
+| NAFNet-KD-Pruned | FP16 (autocast) | 30.60 | 40.5 MB | 12.6 ms | GPU |
 
 **Findings:**
 - FP16 is free compression: <0.01 dB quality loss, 2x size reduction, no GPU latency penalty
@@ -161,6 +163,7 @@ Model converged by ~20K iterations and began mild overfitting after 50K. Best ch
 | NAFNet-KD FP16 | 59.0 MB | 8.0 | 11.2 | 1.40x |
 | Restormer FP16 | 54.9 MB | 103.8 | 22.6* | 0.22x |
 | DRSformer FP32 | 138.0 MB | 175.2 | 109.5 | 0.63x |
+| NAFNet-KD-Pruned FP32 | 81.2 MB | 9.0 | 11.2 | 1.24x |
 
 *Restormer PyTorch FP16 latency; ONNX is significantly slower due to custom attention ops.
 
@@ -188,25 +191,29 @@ NAFNet-KD-Pruned FP32
                 |
                 | FP16 Quantization
                 v
-NAFNet-KD-Pruned FP16 (estimated)
-  ~30.60 dB | 20.13M | 12.2 GMACs | ~40 MB | ~11 ms
-  [2x size reduction, lossless]
+NAFNet-KD-Pruned FP16
+  30.60 dB | 20.13M | 12.2 GMACs | 40.5 MB | 12.6 ms
+  [2x size reduction, lossless (<0.01 dB delta)]
                 |
-                | ONNX Export
+                | ONNX Export (FP32)
                 v
-NAFNet-KD-Pruned ONNX FP16 (estimated)
-  ~30.60 dB | 20.13M | 12.2 GMACs | ~41 MB | ~8 ms
-  [1.4x latency reduction from ORT]
+NAFNet-KD-Pruned ONNX FP32
+  30.60 dB | 20.13M | 12.2 GMACs | 81.2 MB | 9.0 ms
+  [1.24x latency reduction from ORT]
 ```
 
 *Apparent PSNR gain from additional training iterations, not from pruning itself.
 
-**Cumulative compression (Restormer FP32 to final):**
+**Note on FP16:** Pure FP16 (model.half()) causes 2+ dB quality loss due to LayerNorm precision issues. Mixed-precision inference via `torch.autocast` is lossless. FP16 checkpoints save storage (2x) but inference should always use autocast.
+
+**Note on ONNX:** ONNX FP16 export produces numerically degraded output (17.7 dB). FP32 ONNX export with ORT GPU execution is the correct approach and yields 1.24x latency speedup.
+
+**Cumulative compression (Restormer FP32 to final ONNX):**
 - Quality: -0.88 dB (31.48 to 30.60)
 - Parameters: 1.30x fewer (26.13M to 20.13M)
 - Compute: 12.7x fewer GMACs (154.9 to 12.2)
-- Size: ~2.6x smaller (104.7 MB to ~40 MB estimated)
-- Latency: ~5.8x faster (46.4 ms to ~8 ms estimated)
+- Size: 1.29x smaller (104.7 MB to 81.2 MB ONNX) or 2.6x with FP16 checkpoint (40.5 MB)
+- Latency: 5.2x faster (46.4 ms to 9.0 ms)
 
 ## 5. Key Findings
 
