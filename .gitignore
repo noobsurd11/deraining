@@ -20,10 +20,13 @@ experiments/pruning_v3/checkpoints/
 logs/
 tb_logger/
 
-# ── Generated plots & visual samples (reproducible) ──
+# ── Generated plots & visual samples (reproducible, large) ──
 results/baselines/visual_samples/
 results/baselines/plots/*.png
 results/baselines/plots/*.pdf
+
+# ── Paper (separate Overleaf workflow) ──
+paper/
 
 # ── Python ──
 __pycache__/
